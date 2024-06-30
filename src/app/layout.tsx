@@ -1,4 +1,3 @@
-// src/app/layout.tsx
 import { ReactNode } from 'react';
 import Layout from '@components/Layout/Layout';
 import '@app/globals.css';
@@ -8,7 +7,11 @@ export const metadata = {
   description: 'A social media platform for international individuals.',
 };
 
-function RootLayout({ children }: { children: ReactNode }) {
+interface RootLayoutProps {
+  readonly children: ReactNode;
+}
+
+function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
