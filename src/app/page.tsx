@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
-import Logo from '../components/Logo';
+import Logo from '../components/atoms/Logo';
 import { signIn } from 'next-auth/react';
 
 const Home: React.FC = () => {
