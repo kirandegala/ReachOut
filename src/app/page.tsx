@@ -19,7 +19,8 @@ const Home: React.FC = () => {
   return (
     <div className={styles.videoContainer}>
       <Logo className={styles.logo} />
-      
+      {/* <button onClick={() => signIn('google')} className={styles.loginButton}>Login</button> */}
+
       <video autoPlay loop muted className={styles.videoBackground}>
         <source src="/background.mp4" type="video/mp4" />
         Your browser does not support the video tag.
