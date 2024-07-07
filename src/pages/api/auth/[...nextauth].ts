@@ -14,11 +14,6 @@ export default NextAuth({
     GoogleProvider({
       clientId: googleClientId,
       clientSecret: googleClientSecret,
-      authorization: {
-        params: {
-          redirect_uri: process.env.GOOGLE_REDIRECT_URI,
-        },
-      },
     }),
   ],
   callbacks: {
@@ -31,6 +26,10 @@ export default NextAuth({
     async session({ session, token }) {
       session.accessToken = token.accessToken;
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      // Redirect to the feed page after login
+      return `http://localhost:3000/feed`;
     },
   },
 });
