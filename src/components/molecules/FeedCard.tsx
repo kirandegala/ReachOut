@@ -29,6 +29,7 @@ export default function FeedCard<FeedCardProps>({ post }) {
       <div className="h-[70%] w-full content-center border ">{post.postContent}</div>
       <div className="h-[10%] w-full flex place-items-center">
         <PrimaryButton additionalStyles="w-[50%] h-[100%] hover:cursor-pointer hover:bg-blue-50" onClick={()=>{
+          
           setIsLiked(!isLiked);
         }}>
           <div className="[&_svg]:h-[100%] [&_svg]:w-4 flex justify-center gap-1 items-center ">
