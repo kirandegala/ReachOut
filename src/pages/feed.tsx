@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
-import FeedCard from "@components/molecules/FeedCard";
-import Navbar from "@components/molecules/Navbar";
-import { FeedDetails } from "types/feed";
+import React, { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
-export default function FeedPage() {
+import FeedCard from '@components/molecules/FeedCard';
+import Navbar from '@components/molecules/Navbar';
+import { FeedDetails } from 'types/feed';
+import { NextPageWithAuth } from '../types/next-auth.d';
+import { useUser } from '@components/UserProvider';
 
+const FeedPage: NextPageWithAuth = () => {
   const [posts, setPosts] = useState<FeedDetails[]>([]);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -13,7 +17,6 @@ export default function FeedPage() {
         const response = await fetch('http://localhost:3333/api/posts');
         const data = await response.json();
         setPosts(data);
-        console.log(data)
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
@@ -31,4 +34,8 @@ export default function FeedPage() {
       </div>
     </div>
   );
-}
+};
+
+FeedPage.auth = true;
+
+export default FeedPage;
