@@ -19,7 +19,7 @@ export default function FeedCard<FeedCardProps>({ post }) {
         <Avatar
           className="p-1"
           size={"lg"}
-          src={"https://avatars.dicebear.com/api/male/username.svg"} // replace this with actual profile pic i.e post.profileImage
+          src={post.profileImage} // replace this with actual profile pic i.e post.profileImage
         />
         <div>
           <p>{post.profileName}</p>
@@ -29,7 +29,7 @@ export default function FeedCard<FeedCardProps>({ post }) {
       <div className="h-[70%] w-full content-center border ">{post.postContent}</div>
       <div className="h-[10%] w-full flex place-items-center">
         <PrimaryButton additionalStyles="w-[50%] h-[100%] hover:cursor-pointer hover:bg-blue-50" onClick={()=>{
-          
+          // post._id
           setIsLiked(!isLiked);
         }}>
           <div className="[&_svg]:h-[100%] [&_svg]:w-4 flex justify-center gap-1 items-center ">

@@ -6,32 +6,28 @@ import { useUser } from '@components/UserProvider';
 export default function Profile() {
   const { userDetails } = useUser();
 
-  if (!userDetails) {
-    return (
+  return (
+    <>
+      {userDetails ? (
       <>
         <Navbar />
         <div className="profile-page">
-          <p>Loading...</p>
+          <div className="profile-header">
+            <div className="profile-picture">
+              <img src={userDetails.picture} alt="Profile Picture" />
+            </div>
+            <div className="profile-info">
+              <h2>{userDetails.name}</h2>
+              {/* Add other details as needed */}
+            </div>
+          </div>
+          {/* Add bio and other profile details */}
         </div>
       </>
-    );
-  }
-
-  return (
-    <>
-      <Navbar />
-      <div className="profile-page">
-        <div className="profile-header">
-          <div className="profile-picture">
-            <img src={userDetails.picture} alt="Profile Picture" />
-          </div>
-          <div className="profile-info">
-            <h2>{userDetails.name}</h2>
-            {/* Add other details as needed */}
-          </div>
-        </div>
-        {/* Add bio and other profile details */}
-      </div>
+      ) : (
+        <p> Loading... </p>
+      )
+      } 
     </>
   );
 }
