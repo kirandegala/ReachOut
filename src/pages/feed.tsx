@@ -9,7 +9,7 @@ import { useUser } from '@components/UserProvider';
 import axios from 'axios';
 
 const FeedPage: NextPageWithAuth = () => {
-  
+
   const { userDetails } = useUser();
   const { data: session } = useSession();
 
@@ -33,7 +33,6 @@ const FeedPage: NextPageWithAuth = () => {
   }, [session]);
 
   const [posts, setPosts] = useState<FeedDetails[]>([]);
-
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -43,7 +42,6 @@ const FeedPage: NextPageWithAuth = () => {
         console.error('Error fetching posts:', error);
       }
     };
-
     fetchPosts();
   }, []);
 
