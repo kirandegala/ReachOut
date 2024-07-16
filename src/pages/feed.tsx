@@ -24,13 +24,14 @@ const FeedPage: NextPageWithAuth = () => {
         });
         console.log('User saved:', response.data);
       } catch (error) {
+        console.log(error)
       }
     };
 
     if (session) {
       saveUser();
     }
-  }, [session]);
+  }, [session,userDetails]);
 
   const [posts, setPosts] = useState<FeedDetails[]>([]);
   useEffect(() => {
@@ -59,15 +60,23 @@ const FeedPage: NextPageWithAuth = () => {
   };
 
   return (
-    <div className="flex flex-col gap-1">
-      <Navbar />
-      <div className="w-[40vw] mx-auto flex flex-col gap-4">
-        <PostContent onPostSubmit={handlePostSubmit} />
-        {posts.map((post, index) => (
-          <FeedCard key={index} post={post} />
-        ))}
-      </div>
-    </div>
+    <>
+      {userDetails ? (
+          <div className="flex flex-col gap-1">
+            <Navbar />
+            <div className="w-[40vw] mx-auto flex flex-col gap-4">
+              <PostContent onPostSubmit={handlePostSubmit} />
+              {posts.map((post, index) => (
+                <FeedCard key={index} post={post}/>
+              ))}
+            </div>
+          </div>
+      ) : (
+        <p> Loading... </p>
+      )
+     }
+    </>
+
   );
 };
 
