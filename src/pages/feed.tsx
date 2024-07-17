@@ -33,7 +33,20 @@ const FeedPage: NextPageWithAuth = () => {
     }
   }, [session,userDetails]);
 
-  const [posts, setPosts] = useState<FeedDetails[]>([]);
+  const [posts, setPosts] = useState<FeedDetails[]>([{
+    // dummy data
+    profileImage: `https://picsum.photos/id/${Math.round(Math.random() * 500)}/200`,
+    profileName: "Vineeth",
+    postContent: "lorem",
+    likeCount: 12,
+    commentCount: 15,
+    timePosted: 10000,
+    comments: [{
+        name: "Vineeth",
+        commentText: "hiiii",
+        timeCommented: 10000}
+  ]
+}]);
   useEffect(() => {
     const fetchPosts = async () => {
       try {

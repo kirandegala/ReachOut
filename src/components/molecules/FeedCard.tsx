@@ -14,7 +14,7 @@ export default function FeedCard<FeedCardProps>({ post }) {
   let [isLiked, setIsLiked] = useState(false);
   let [isCommentSectionOpened, setIsCommentSectionOpened] = useState(false);
   return (
-    <div className="h-96 w-full bg-transparent border border-solid rounded flex flex-col gap-1 place-items-center p-2">
+    <div className={`${isCommentSectionOpened?"h-fit":"h-96"}h-96 w-full bg-transparent border border-solid rounded flex flex-col gap-1 place-items-center p-2`}>
       <div className="h-[20%] w-full flex place-items-center gap-2">
         <Avatar
           className="p-1"
@@ -37,14 +37,16 @@ export default function FeedCard<FeedCardProps>({ post }) {
             <p>Like</p>
           </div>
         </PrimaryButton>
-        <PrimaryButton additionalStyles="w-[50%] h-[100%] hover:cursor-pointer hover:bg-blue-100">
+        <PrimaryButton additionalStyles="w-[50%] h-[100%] hover:cursor-pointer hover:bg-blue-100" onClick={()=>{
+          setIsCommentSectionOpened(!isCommentSectionOpened)
+        }}>
           <div className="[&_svg]:h-[100%] [&_svg]:w-4 flex justify-center gap-1 items-center">
             <CommentIcon/>
             <p>Comment</p>
           </div>
         </PrimaryButton>
       </div>
-      {isCommentSectionOpened?<CommentSection/>:<></>}
+      {isCommentSectionOpened?<div className="duration-500 ease-in-out transition-all"><CommentSection/></div>:<></>}
     </div>
   );
 }
