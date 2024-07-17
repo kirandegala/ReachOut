@@ -19,7 +19,7 @@ export default function FeedCard<FeedCardProps>({ post }) {
         <Avatar
           className="p-1"
           size={"lg"}
-          src={post.profileImage} // replace this with actual profile pic i.e post.profileImage
+          src={post.profileImage}
         />
         <div>
           <p>{post.profileName}</p>
@@ -46,7 +46,11 @@ export default function FeedCard<FeedCardProps>({ post }) {
           </div>
         </PrimaryButton>
       </div>
-      {isCommentSectionOpened?<div className="duration-500 ease-in-out transition-all"><CommentSection/></div>:<></>}
+      {isCommentSectionOpened?
+        <div className="duration-500 ease-in-out transition-all">
+          <CommentSection/>
+        </div>  :   <></>
+        }
     </div>
   );
 }

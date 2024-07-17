@@ -39,7 +39,8 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { userDetails } = useUser();
-
+  console.log(userDetails)
+  
   // Ensure userDetails is defined before rendering
   if (!userDetails) {
     return <p>Loading...</p>;

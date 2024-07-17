@@ -13,6 +13,7 @@ const FeedPage: NextPageWithAuth = () => {
   const { userDetails } = useUser();
   const { data: session } = useSession();
 
+  // Create user if they dont exist
   useEffect(() => {
     const saveUser = async () => {
       try {
@@ -22,9 +23,7 @@ const FeedPage: NextPageWithAuth = () => {
           image: userDetails.picture,
           bio: '',
         });
-        console.log('User saved:', response.data);
       } catch (error) {
-        console.log(error)
       }
     };
 
@@ -33,25 +32,14 @@ const FeedPage: NextPageWithAuth = () => {
     }
   }, [session,userDetails]);
 
-  const [posts, setPosts] = useState<FeedDetails[]>([{
-    // dummy data
-    profileImage: `https://picsum.photos/id/${Math.round(Math.random() * 500)}/200`,
-    profileName: "Vineeth",
-    postContent: "lorem",
-    likeCount: 12,
-    commentCount: 15,
-    timePosted: 10000,
-    comments: [{
-        name: "Vineeth",
-        commentText: "hiiii",
-        timeCommented: 10000}
-  ]
-}]);
+  // Fetch Posts
+  const [posts, setPosts] = useState<FeedDetails[]>([]);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get('http://localhost:3333/api/posts');
         setPosts(response.data);
+        console.log(response.data)
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
@@ -59,6 +47,7 @@ const FeedPage: NextPageWithAuth = () => {
     fetchPosts();
   }, []);
 
+  // Send Post
   const handlePostSubmit = async (post: string) => {
     try {
       console.log(userDetails.email)
