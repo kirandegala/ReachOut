@@ -6,6 +6,7 @@ import UnlikeIcon from "../../../public/icons/unlikeIcon.svg";
 import LikeIcon from "../../../public/icons/LikeIcon.svg"
 import CommentIcon from "../../../public/icons/commentIcon.svg"
 import CommentSection from "./CommentSection";
+
 interface FeedCardProps {
   post: FeedDetails;
 }
@@ -48,7 +49,7 @@ export default function FeedCard<FeedCardProps>({ post }) {
       </div>
       {isCommentSectionOpened?
         <div className="duration-500 ease-in-out transition-all">
-          <CommentSection/>
+          <CommentSection comments={post.comments} postId={post._id} />
         </div>  :   <></>
         }
     </div>
