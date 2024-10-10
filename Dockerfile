@@ -1,5 +1,5 @@
-# Use the official Node.js 14 image as the base
-FROM node:14
+# Use the official Node.js 18 image as the base
+FROM node:18-alpine
 
 # Set the working directory
 WORKDIR /ReachOut
